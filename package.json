@@ -1,0 +1,19 @@
+{
+  "name": "itrac-systems-convertor",
+  "version": "1.0.0",
+  "description": "convert  .excel to .mdb base on ttms.mdb",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [
+    "Electron"
+  ],
+  "author": "HosseinMarzban",
+  "devDependencies": {
+    "electron": "^1.8.4"
+  },
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
+}

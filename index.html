@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Itrac Systems. Convertor TTMS</title>
+
+    <link rel="stylesheet" href="assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <script src="assets/js/jquery-2.2.4.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
+    <script src="node_modules/dropzone/dist/min/dropzone.min.js "></script>
+
+    
+  </head>
+  <body>
+
+<style>
+*{
+  -webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;
+}
+  body, html{
+
+    width: 460px;
+    margin: 0;padding: 0;
+    
+  
+  }
+
+    main{
+    width: 100%;padding: 10px;
+    background-color: #fff;
+    border-radius: 6px;border:1px solid rgba(0,0,0,.1);
+    margin: 0 auto;max-width: 460px;
+    box-shadow: 4px 4px 3px rgba(0,0,0,.2);
+  }
+
+
+main .body{
+    padding: 10px;
+    border: 6px dashed #aaa;
+    border-radius: 14px;
+    border: 5px dashed #ccc;
+    border-radius: 14px;transition: all .3s ease-in-out;
+  }
+
+  main .body:hover{
+    border-color: rgba(255,69,0,.666);
+  }
+  main .body img{
+    width: 22.2%;
+    margin: 0 4%;
+    height: auto;
+  }
+
+  main .body img:nth-child(2){
+    width: 60px;
+    margin: 14px 11.4%;
+  }
+
+
+  
+  /*========*/
+
+  main .head{
+    width: 100%;
+    height: 30px;
+    background-color: #eee;
+    border-radius: 3px;
+    margin-bottom: 18px;
+    -webkit-app-region: drag;
+    box-shadow: 1px 1px 12px rgba(0,0,0,.26);margin-top: 2px;
+  }
+
+  main .head button{
+    -webkit-app-region: no-drag;
+  }
+
+  main .head #btn_close{
+    border-radius: 100%;
+    
+    float: right;border:none;transition: all .2s ease-in-out;
+    width: 23px;line-height: 21px;text-align: center;
+    height: 23px;
+    position: relative;
+    top: 4px;
+    right: 7px;outline: none;
+    font-size: 14px;cursor: pointer;
+    
+  }
+  main .head #btn_close:hover{
+    background: orangered;
+    color: #fff;
+  }
+
+  main .head #btn_reload,main .head #btn_info{
+    border:none;background-color: transparent;font-size: 15px;transition: all .2s ease-in-out;
+    width: 24px;height: 24px;line-height: 24px;text-align: center;outline: none;
+    position: relative;
+    top: 3px;
+    left: 4px;
+  }
+  main .head #btn_reload:hover{
+    color: royalblue;
+  }
+  main .head #btn_info{
+    
+  }
+
+
+</style>
+
+    <main>
+
+      <div class="head">
+
+          <button id="btn_close"> <i class="fa fa-close"></i> </button>
+          <button id="btn_reload"> <i class="fa fa fa-refresh"></i>  </button>
+          <button id="btn_info"> <i class="fa fa-info"></i> </button>
+
+      </div>
+
+
+      <div class="body" id="drag-file">
+
+        <img src="assets/img/excel.svg" alt="excel">
+
+        <img src="assets/img/transfer.svg" alt="excel">
+
+        <img src="assets/img/microsoft-access.svg" alt="excel">
+      </div>
+
+    </main>
+
+    
+
+    <script>
+      // You can also require other files to run in this process
+      require('./renderer.js')
+
+      const {app} = require('electron')
+
+
+
+      const remote = require('electron').remote
+      let w = remote.getCurrentWindow()
+     
+
+      document.getElementById('btn_close').addEventListener('click',function(){
+        w.close()
+      })
+
+      document.getElementById('btn_reload').addEventListener('click',function(){
+        w.reload()
+      })
+
+
+        var holder = document.getElementById('drag-file');
+
+        holder.ondragover = () => {
+            return false;
+        };
+
+        holder.ondragleave = () => {
+            return false;
+        };
+
+        holder.ondragend = () => {
+            return false;
+        };
+
+        holder.ondrop = (e) => {
+            e.preventDefault();
+
+            console.log(e)
+
+            for (let f of e.dataTransfer.files) {
+                console.log('File(s) you dragged here: ', f.path)
+                console.log(f)
+            }
+            
+            return false;
+        };
+
+
+ 
+
+
+
+    </script>
+  </body>
+</html>
